@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{EEA7D36D-92F0-4EED-B95D-AA1F454466EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{A2BC76FC-EE9E-44AB-8EA1-2ABF997A1B45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{5BE06C8D-EA42-4E6C-9C25-9DA0FCF19A6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEA7D36D-92F0-4EED-B95D-AA1F454466EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA7D36D-92F0-4EED-B95D-AA1F454466EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA7D36D-92F0-4EED-B95D-AA1F454466EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA7D36D-92F0-4EED-B95D-AA1F454466EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2BC76FC-EE9E-44AB-8EA1-2ABF997A1B45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2BC76FC-EE9E-44AB-8EA1-2ABF997A1B45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2BC76FC-EE9E-44AB-8EA1-2ABF997A1B45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2BC76FC-EE9E-44AB-8EA1-2ABF997A1B45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BE06C8D-EA42-4E6C-9C25-9DA0FCF19A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BE06C8D-EA42-4E6C-9C25-9DA0FCF19A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BE06C8D-EA42-4E6C-9C25-9DA0FCF19A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BE06C8D-EA42-4E6C-9C25-9DA0FCF19A6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC42934D-E211-4143-910C-CDD0533C7A24}
+	EndGlobalSection
+EndGlobal
