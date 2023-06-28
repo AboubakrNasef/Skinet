@@ -1,6 +1,7 @@
 
 
 
+using API.Helpers;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Repositries;
@@ -10,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IProductRepositry, ProductRepositry>();
+builder.Services.AddScoped(typeof(IGenericRepositry<>), typeof(GenericRepositry<>));
+builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<StoreContext>(
@@ -49,7 +52,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseRouting();
+app.UseStaticFiles();
 app.UseAuthorization();
 
 app.MapControllers();
