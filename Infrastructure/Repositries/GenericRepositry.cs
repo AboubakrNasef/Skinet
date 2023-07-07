@@ -4,6 +4,7 @@ using Core.Specification;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Query;
 using SQLitePCL;
 using System;
@@ -32,11 +33,7 @@ namespace Infrastructure.Repositries
 
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
-            var x = _context.Set<T>().AsQueryable();
-           var t= x.Expression;
-            ExpressionPrinter xP = new ExpressionPrinter();
-           var pp =  t.Print();
-           ;
+      
             return await _context.Set<T>().ToListAsync();
         }
 

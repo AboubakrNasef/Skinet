@@ -7,15 +7,17 @@
     routerLink="/"
     alt="SkiNet"
     style="max-height: 70px;"
+    class="logo"
+    [routerLink]="['/']"
   />
   <nav class="my-2 my-md-0 mr-md-3 text-uppercase" style="font-size: larger;">
-    <a
-      class="p-2 text-dark"
-href="#"
+    <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+      class="p-2 "
+
       >Home</a
     >
-    <a class="p-2 text-dark" href="#">Shop</a>
-    <a class="p-2 text-dark" href="#">Errors</a>
+    <a class="p-2 " [routerLink]="['/shop']" routerLinkActive="active">Shop</a>
+    <a class="p-2 " >Contacts</a>
   </nav>
   <div class="d-flex align-items-center">
     <a  class="position-relative">

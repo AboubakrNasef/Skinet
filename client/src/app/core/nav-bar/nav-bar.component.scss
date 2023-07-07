@@ -16,8 +16,9 @@ a {
     color: #343a40;
     
     &.active {
-        color: orange;
-    }
+        color: #0265D5;
+        font-weight: bold;
+    } 
 }
 
 .logo {
