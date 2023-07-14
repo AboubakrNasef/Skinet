@@ -25,11 +25,11 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/font-awesome/css/font-awesome.min.css",
-              "node_modules/ngx-toastr/toastr.css",
+             
+              "./node_modules/bootswatch/dist/Minty/bootstrap.min.css",
+ 
+               "node_modules/ngx-toastr/toastr.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-
               "src/styles.scss"],
             "scripts": []
           },
@@ -79,7 +79,7 @@
               "browserTarget": "client:build:development"
             }
           },
-          "defaultConfiguration": "development",
+          "defaultConfiguration": "development"
         
         },
         "extract-i18n": {
