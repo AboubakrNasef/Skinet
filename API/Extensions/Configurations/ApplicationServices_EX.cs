@@ -12,26 +12,24 @@ namespace API.Extensions.Configurations
         {
             services.AddScoped(typeof(IGenericRepositry<>), typeof(GenericRepositry<>));
             services.AddScoped<IProductRepositry, ProductRepositry>();
+            services.AddScoped<IBasketRepository, BasketRepositry>();
 
             services.Configure<ApiBehaviorOptions>(options =>
                                         options.InvalidModelStateResponseFactory = actionContext =>
                                           {
 
-                                       var errors = actionContext.ModelState
-                                       .Where(e => e.Value.Errors.Count > 0)
-                                       .SelectMany(x => x.Value.Errors)
-                                       .Select(x => x.ErrorMessage).ToArray();
+                                              var errors = actionContext.ModelState
+                                              .Where(e => e.Value.Errors.Count > 0)
+                                              .SelectMany(x => x.Value.Errors)
+                                              .Select(x => x.ErrorMessage).ToArray();
 
-                                       var errorResponse = new ApiValidationErrorResponse { Errors = errors };
-
-
-                                       return new BadRequestObjectResult(errorResponse);
-                                                   }
+                                              var errorResponse = new ApiValidationErrorResponse { Errors = errors };
 
 
-);
+                                              return new BadRequestObjectResult(errorResponse);
+                                          });
 
-return services;    
+            return services;
         }
 
     }
