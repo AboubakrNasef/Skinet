@@ -2,25 +2,23 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './shared/models/IProduct';
 import { IPagination } from './shared/models/Pagination';
+import { BasketService } from './basket/basket.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent  implements OnInit {
- 
+export class AppComponent implements OnInit {
   title = 'SkiNet';
 
+  constructor(private basketService: BasketService) {}
 
-
- constructor() {
-  
-
- }
- 
   ngOnInit(): void {
- 
-
-}
+    const basketId = localStorage.getItem('basket_id');
+    if  (basketId)
+    {
+      this.basketService.getBasket(basketId).subscribe(()=>{})
+    }
+  }
 }
