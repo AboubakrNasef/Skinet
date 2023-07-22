@@ -47,8 +47,12 @@ namespace API.Controllers
         {
             return Ok();
         }
-
-      
+        [HttpGet("testauth")]
+        [Authorize]
+        public ActionResult<string> GetSecretText(int id)
+        {
+            return "secret text";
+        }
     }
 
 }

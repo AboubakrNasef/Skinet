@@ -5,10 +5,12 @@ using API.Errors;
 using API.Extensions.Configurations;
 using API.Helpers;
 using API.Middleware;
+using Core.Entities.Identity;
 using Core.Interfaces;
 using Infrastructure.Data;
-using Infrastructure.Repositries;
-using Microsoft.AspNetCore.Mvc;
+using Infrastructure.Identity;
+using Infrastructure.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
 
@@ -17,11 +19,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddApplicationServices();
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<StoreContext>(
     x => x.UseSqlite(
     builder.Configuration.GetConnectionString("DefaultConnection")
+
+    ));
+builder.Services.AddDbContext<AppIdentityDbContext>(
+    x => x.UseSqlite(
+    builder.Configuration.GetConnectionString("IdentityConnection")
 
     ));
 builder.Services.AddSingleton<IConnectionMultiplexer>(
@@ -34,6 +42,7 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSwaggerDocumentation();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddIdentityServices_EX(builder.Configuration);
 
 builder.Services.AddCors(opt =>
 opt.AddPolicy("CorsPolicy", policy =>
@@ -55,6 +64,11 @@ using (var scope = app.Services.CreateScope())
         var context = services.GetRequiredService<StoreContext>();
         await context.Database.MigrateAsync();
         await StoreContextSeed.SeedData(context,loggerFactory);
+
+        var usermanager = services.GetRequiredService<UserManager<AppUser>>();
+        var identityContext = services.GetRequiredService<AppIdentityDbContext>();
+        await identityContext.Database.MigrateAsync();
+        await AppIdentityDbContextSeed.SeedUserAsync(usermanager);
     }
     catch (Exception ex)
     {
@@ -75,6 +89,7 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseStaticFiles();
 app.UseCors("CorsPolicy");
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
