@@ -1,30 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {PaginationModule} from 'ngx-bootstrap/pagination';
-import {CarouselModule} from 'ngx-bootstrap/carousel';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { PaginHeaderComponent } from './Components/pagin-header/pagin-header.component';
 import { PagerComponent } from './Components/pager/pager.component';
-import { OrderTotalsComponent } from './components/order-totals/order-totals.component'
-
-
+import { OrderTotalsComponent } from './components/order-totals/order-totals.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import { TextInputComponent } from './components/text-input/text-input.component'
 @NgModule({
-  declarations: [
-    PaginHeaderComponent,
-    PagerComponent,
-    OrderTotalsComponent
-  ],
+  declarations: [PaginHeaderComponent, PagerComponent, OrderTotalsComponent, TextInputComponent],
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
-    CarouselModule.forRoot()
-  ]
-  ,
-  exports:[
+    CarouselModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    ReactiveFormsModule,
+  ],
+  exports: [
     PaginationModule,
     PaginHeaderComponent,
     PagerComponent,
     CarouselModule,
-    OrderTotalsComponent
-  ]
+    OrderTotalsComponent,
+    ReactiveFormsModule,
+    BsDropdownModule,
+    TextInputComponent
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

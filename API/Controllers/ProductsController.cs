@@ -35,17 +35,17 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Pagination<ProductDTO>>> GetProducts([FromQuery]ProductSpecParam specParam)
+        public async Task<ActionResult<Pagination<ProductDto>>> GetProducts([FromQuery]ProductSpecParam specParam)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(specParam);
             var countSpec = new ProductWithFilterForCountSpecification(specParam);
             var totalItems = await _productRepo.CountAsync(countSpec);
             var products = await _productRepo.ListAsync(spec);
-            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDTO>>(products);
-            return Ok(new Pagination<ProductDTO>(specParam.PageIndex,specParam.PageSize,totalItems,data));
+            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(products);
+            return Ok(new Pagination<ProductDto>(specParam.PageIndex,specParam.PageSize,totalItems,data));
         }
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(ProductDTO), 200)]
+        [ProducesResponseType(typeof(ProductDto), 200)]
         [ProducesResponseType(typeof(ApiResponse), 404)]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
@@ -59,7 +59,7 @@ namespace API.Controllers
 
 
             return Ok(
-                _mapper.Map<Product, ProductDTO>(product)); 
+                _mapper.Map<Product, ProductDto>(product)); 
         }
 
         [HttpGet("Types")]

@@ -44,7 +44,7 @@ namespace API.Controllers
             {
                 Email = user.Email,
                 Displayname = user.DisplayName,
-                Token = "this token"
+                Token = _tokenService.CreateToken(user)
             };
         }
 
@@ -102,13 +102,17 @@ namespace API.Controllers
             {
                 Email = user.Email,
                 Displayname = user.DisplayName,
-                Token = "this token"
+                Token = _tokenService.CreateToken(user),
             };
         }
 
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
+            if (CheckEmailExistsAsync(registerDto.Email).Result.Value)
+            {
+                return new BadRequestObjectResult(new ApiValidationErrorResponse() { Errors = new[] { "email is in used" } });
+            }
             var user = new AppUser
             {
                 Email = registerDto.Email,

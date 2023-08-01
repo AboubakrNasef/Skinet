@@ -11,6 +11,9 @@ import { ErrorInterceptor } from './core/Interceptors/error.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './core/Interceptors/loading.interceptor';
 import { HomeModule } from './home/home.module';
+import { AccountRoutingModule } from './account/account-routing.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +24,9 @@ import { HomeModule } from './home/home.module';
     HttpClientModule,
     CoreModule,
     HomeModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FontAwesomeModule,
+   
   ],
   providers: [
     {
