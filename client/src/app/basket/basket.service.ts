@@ -8,8 +8,9 @@ import {
   Basket,
   IBasketItem,
   IBasketTotal,
-} from '../shared/models/Basket';
+} from '../shared/models/IBasket';
 import { IProduct } from '../shared/models/IProduct';
+import { IDeliveryMethod } from '../shared/models/IDeliveryMethod';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,7 @@ export class BasketService {
   basket$ = this.basketSource.asObservable();
   private basketTotalSource = new BehaviorSubject<IBasketTotal>(null as any);
   basketTotal$ = this.basketTotalSource.asObservable();
-
+  shipping = 0;
   constructor(private http: HttpClient) {}
 
   getBasket(id: string) {
@@ -144,6 +145,16 @@ export class BasketService {
     }, error => {
       console.log(error);
     });
+  }
+
+
+  setShippingPrice(deiveryMethod: IDeliveryMethod){
+    this.shipping = deiveryMethod.price;
+    const basket = this.getCurrentBasketValue();
+    basket.deliveryMethodId = deiveryMethod.id;
+    basket.shippingPrice = deiveryMethod.price;
+    this.calculateTotals();
+    this.setBasket(basket);
   }
 
 

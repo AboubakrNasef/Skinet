@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
+using Infrastructure.Repositries;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
-    internal class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly StoreContext _context;
 
@@ -40,7 +41,7 @@ namespace Infrastructure.Data
             // Check whether hash table contains entry with this name
             if (!_repositories.ContainsKey(type))
             {
-                var repositoryType = typeof(IGenericRepositry<>);
+                var repositoryType = typeof(GenericRepositry<>);
                 // If we don't have a repository for this type, then create a instance of that repo
                 var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _context);
                 _repositories.Add(type, repositoryInstance);

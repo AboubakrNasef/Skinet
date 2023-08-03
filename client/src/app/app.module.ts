@@ -13,6 +13,7 @@ import { LoadingInterceptor } from './core/Interceptors/loading.interceptor';
 import { HomeModule } from './home/home.module';
 import { AccountRoutingModule } from './account/account-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { JwtInterceptor } from './core/Interceptors/jwt.interceptor';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     CoreModule,
     HomeModule,
-    NgxSpinnerModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     FontAwesomeModule,
    
   ],
@@ -37,6 +38,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     {
       provide: HTTP_INTERCEPTORS,
       useClass:LoadingInterceptor,
+      multi:true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass:JwtInterceptor,
       multi:true
     },
   ],
