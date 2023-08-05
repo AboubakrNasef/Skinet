@@ -38,6 +38,7 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(
     c =>
     {
         var config = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("Redis"), true);
+
         return ConnectionMultiplexer.Connect(config);
     }
     );

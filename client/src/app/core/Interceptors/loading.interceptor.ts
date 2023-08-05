@@ -16,6 +16,11 @@ export class LoadingInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+
+if (request.method==="DELETE"){
+  return next.handle(request);
+}
+
     this.busyService.busy();
     return next.handle(request).pipe(
       delay(1000),

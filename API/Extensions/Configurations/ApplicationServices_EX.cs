@@ -1,6 +1,7 @@
 ﻿using API.Errors;
 using Core.Interfaces;
 using Infrastructure.Repositries;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 namespace API.Extensions.Configurations
@@ -13,7 +14,7 @@ namespace API.Extensions.Configurations
             services.AddScoped(typeof(IGenericRepositry<>), typeof(GenericRepositry<>));
             services.AddScoped<IProductRepositry, ProductRepositry>();
             services.AddScoped<IBasketRepository, BasketRepositry>();
-
+            services.AddSingleton<IResponseCacheService, ResponseCacheService>();
             services.Configure<ApiBehaviorOptions>(options =>
                                         options.InvalidModelStateResponseFactory = actionContext =>
                                           {
