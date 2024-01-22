@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/client",
+            "outputPath": "../API/wwwroot",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -25,19 +25,15 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-             
-              "./node_modules/bootswatch/dist/Minty/bootstrap.min.css",
-              "node_modules/ngx-spinner/animations/ball-scale-multiple.css" ,
-   
-               "node_modules/ngx-toastr/toastr.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/styles.scss"],
+           
+              "src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
             "production": {
               "optimization": true,
-"aot": true,            
+              "aot": true,
 
               "budgets": [
                 {
@@ -84,7 +80,6 @@
             }
           },
           "defaultConfiguration": "development"
-        
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

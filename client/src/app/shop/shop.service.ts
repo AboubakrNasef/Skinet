@@ -21,24 +21,21 @@ export class ShopService {
   shopParams = new ShopParams();
   productCache = new Map();
 
-
-
-
   constructor(private http: HttpClient) {}
 
-  getProducts(useCache:boolean) {
-
-    if (!useCache){
-      this.productCache =new Map();
+  getProducts(useCache: boolean) {
+    if (!useCache) {
+      this.productCache = new Map();
     }
 
-if(this.productCache.size>0&&useCache)
-{
-  if (this.productCache.has(Object.values(this.shopParams).join('-'))) {
-    this.pagination.data=this.productCache.get(Object.values(this.shopParams).join('-')) 
-    return of(this.pagination);
-  }
-}
+    if (this.productCache.size > 0 && useCache) {
+      if (this.productCache.has(Object.values(this.shopParams).join('-'))) {
+        this.pagination.data = this.productCache.get(
+          Object.values(this.shopParams).join('-')
+        );
+        return of(this.pagination);
+      }
+    }
 
     let params = new HttpParams();
     if (this.shopParams.brandId !== 0) {
@@ -62,8 +59,10 @@ if(this.productCache.size>0&&useCache)
       })
       .pipe(
         map((response) => {
-
-       this.productCache.set(Object.values(this.shopParams).join('-'),response.body?.data)
+          this.productCache.set(
+            Object.values(this.shopParams).join('-'),
+            response.body?.data
+          );
           this.pagination = response.body!;
           return response.body;
         })
@@ -99,10 +98,10 @@ if(this.productCache.size>0&&useCache)
   }
 
   getProduct(id: number) {
-    let product! :IProduct ;
-   this.productCache.forEach((products:IProduct[])=>{
-    product=products.find(p=>p.id==id) as IProduct;
-   })
+    let product!: IProduct;
+    this.productCache.forEach((products: IProduct[]) => {
+      product = products.find((p) => p.id == id) as IProduct;
+    });
     if (product) {
       return of(product);
     }

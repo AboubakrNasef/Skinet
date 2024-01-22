@@ -12,6 +12,7 @@ using Infrastructure.Identity;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,12 +26,12 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<StoreContext>(
-    x => x.UseSqlite(
+    x => x.UseNpgsql(
     builder.Configuration.GetConnectionString("DefaultConnection")
 
     ));
 builder.Services.AddDbContext<AppIdentityDbContext>(
-    x => x.UseSqlite(
+    x => x.UseNpgsql(
     builder.Configuration.GetConnectionString("IdentityConnection")
 
     ));
@@ -91,9 +92,17 @@ app.UseStatusCodePagesWithReExecute("/errors/{0}");
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseStaticFiles();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "Content/")),
+    RequestPath = "/content"
+});
+
 app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-
+app.MapFallbackToController("Index", "FallBack");
 app.Run();
