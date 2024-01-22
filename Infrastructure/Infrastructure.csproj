@@ -7,15 +7,36 @@
 
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Data\SeedData\brands.json" />
+    <None Remove="Data\SeedData\delivery.json" />
+    <None Remove="Data\SeedData\products.json" />
+    <None Remove="Data\SeedData\types.json" />
+  </ItemGroup>
+
 		
 	   
   <ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.2" />
+	  <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.32.0" />
+	  <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.0" />
+	  <PackageReference Include="StackExchange.Redis" Version="2.6.122" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.32.0" />
   </ItemGroup>
 
   <ItemGroup>
+	  <None Include="Data\SeedData\**"  CopyToOutputDirectory="PreserveNewest" />
     <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Data\SeedData\brands.json" />
+    <Resource Include="Data\SeedData\delivery.json" />
+    <Resource Include="Data\SeedData\products.json" />
+    <Resource Include="Data\SeedData\types.json" />
   </ItemGroup>
 
 </Project>

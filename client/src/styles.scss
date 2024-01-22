@@ -1,0 +1,20 @@
+// /* You can add global styles to this file, and also import other style files */
+
+// /* Importing Bootstrap SCSS file. */
+// @import "./node_modules/bootstrap/scss/bootstrap";
+
+// /* Importing Datepicker SCSS file. */
+// @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+// $fa-font-path : "~@fortawesome/fontawesome-free/webfonts";
+// @import "../node_modules/font-awesome/css/font-awesome.min.css";
+/* Importing Bootstrap SCSS file. */
+@import "../node_modules/bootswatch/dist/Minty/bootstrap.min.css";
+@import "../node_modules/ngx-spinner/animations/ball-scale-multiple.css";
+
+@import "../node_modules/ngx-toastr/toastr.css";
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
